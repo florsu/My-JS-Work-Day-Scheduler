@@ -1,10 +1,21 @@
 for (let i = 1; i < 10; i++) {
     const btn = `btn${i}`
+    const textId = `text${i}`
     const btnEle = document.getElementById(btn)
+    btnEle.dataset.textId = textId
+    const text = localStorage.getItem(textId)
+    if (text != null) {
+        document.getElementById(textId).value = text
+    }
     btnEle.addEventListener('click', btnListener)
+
 }
 function btnListener() {
-    console.log(this)
+    const textId = this.dataset.textId
+    const text = document.getElementById(textId).value
+    localStorage.setItem(textId, text)
+    console.log(textId)
+    console.log(text)
 }
 hourlyBlock()
 function hourlyBlock() {
